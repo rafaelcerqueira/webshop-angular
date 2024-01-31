@@ -29,4 +29,8 @@ export class HomeComponent {
     this.category = newCategory;
   }
 
+  onAddtoCart (): void {
+    
+  }
+
 }

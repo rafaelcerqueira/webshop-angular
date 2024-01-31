@@ -9,6 +9,61 @@
                 <button mat-raised-button routerLink="/home">Continue comprando</button>
             </td>
         </ng-container>
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef>Nome</th>
+            <td mat-cell *matCellDef="let element">
+                <span class="truncate max-w-xs block">{{ element.name }}</span>
+            </td>
+            <td mat-footer-cell *matFooterCellDef></td>
+        </ng-container>
+        <ng-container matColumnDef="price">
+            <th mat-header-cell *matHeaderCellDef>Preço</th>
+            <td mat-cell *matCellDef="let element">
+                {{ element.price | currency:'BRL':'symbol':'1.2-2' }}
+            </td>
+            <td mat-footer-cell *matFooterCellDef></td>
+        </ng-container>
+        <ng-container matColumnDef="quantity">
+            <th mat-header-cell *matHeaderCellDef>Quantidade</th>
+            <td mat-cell *matCellDef="let element">
+                <button mat-icon-button>
+                    <mat-icon>remove</mat-icon>
+                </button>
+                <span>{{ element.quantity }}</span>
+                <button mat-icon-button>
+                    <mat-icon>add</mat-icon>
+                </button>
+            </td>
+            <td mat-footer-cell *matFooterCellDef></td>
+        </ng-container>
+        <ng-container matColumnDef="total">
+            <th mat-header-cell *matHeaderCellDef>Total</th>
+            <td mat-cell *matCellDef="let element">
+                {{ (element.quantity * element.price) | currency:'BRL':'symbol':'1.2-2'}}
+            </td>
+            <td mat-footer-cell *matFooterCellDef>
+                <span class="font-bold py-5 block">
+                    {{ getTotalCost(cart.items) | currency:'BRL':'symbol':'1.2-2' }}
+                </span>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef>
+                <button mat-raised-button color="warn" class="float-right">
+                    Esvaziar carrinho
+                </button>
+            </th>
+            <td mat-cell *matCellDef="let element">
+                <button mat-mini-fab color="warn" class="float-right">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </td>
+            <td mat-footer-cell *matFooterCellDef>
+               <button mat-raised-button color="primary">
+                     Finalizar compra
+               </button> 
+            </td>
+        </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
