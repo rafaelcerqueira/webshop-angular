@@ -53,4 +53,11 @@ export class CartComponent {
     return this.cartService.getTotalCost(items);
   }
 
+  onClearCart(): void {
+    this.cartService.clearCart();
+  }
+
+  onRemoveItem(item: CartItem): void {
+    this.cartService.removeItem(item);
+  }
 }
