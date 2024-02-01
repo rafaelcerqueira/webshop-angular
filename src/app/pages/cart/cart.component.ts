@@ -1,3 +1,4 @@
+import { CartService } from './../../services/cart.service';
 import { Component } from '@angular/core';
 import { Cart, CartItem } from '../../models/cart.model';
 
@@ -37,16 +38,19 @@ export class CartComponent {
     'actions'
   ];
 
-  constructor() {}
+  constructor(private cartService: CartService) { }
 
   ngOnInit() {
     this.dataSource = this.cart.items;
+    this.cartService.cart.subscribe((_cart: Cart) => {
+      this.cart = _cart;
+      this.dataSource = _cart.items;
+    })
   }
 
   getTotalCost(items: Array<CartItem>): number {
     
-    return items.
-      map((item) => item.price * item.quantity).reduce((prev, current) => prev + current, 0);
+    return this.cartService.getTotalCost(items);
   }
 
 }
