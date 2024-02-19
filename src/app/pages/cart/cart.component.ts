@@ -60,4 +60,13 @@ export class CartComponent {
   onRemoveItem(item: CartItem): void {
     this.cartService.removeItem(item);
   }
+
+  onAddQuantity(item: CartItem): void {
+    this.cartService.addToCart(item);
+  }
+
+  onRemoveQuantity(item: CartItem): void {
+    this.cartService.removeQuantity(item);
+  } 
+
 }
